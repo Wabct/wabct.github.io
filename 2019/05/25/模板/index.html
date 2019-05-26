@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>c++ Template（模板） 基础学习 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="cpp">
+  
+
+  <meta name="description" content="c++ Template（模板） 基础学习 前言模板是c++进阶的重要的一环，但同时又是难点之一。我在看大佬的代码时，经常会被大佬模板的各种花式用法秀的脑壳疼，因此好好学习了一模板的基础知识，写这篇博客为的是自己的总结学习以及以后复习可以看。这篇博客的例程相对简单容易看懂，比较适合新手入门，如果你是c++新手玩家，想掌握一点模板的基础，这篇博客会比较适合你。 1 模板函数1.1 普通函数模板在声">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c++ Template（模板） 基础学习">
+<meta property="og:url" content="http://wabct.xyz/2019/05/25/模板/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="c++ Template（模板） 基础学习 前言模板是c++进阶的重要的一环，但同时又是难点之一。我在看大佬的代码时，经常会被大佬模板的各种花式用法秀的脑壳疼，因此好好学习了一模板的基础知识，写这篇博客为的是自己的总结学习以及以后复习可以看。这篇博客的例程相对简单容易看懂，比较适合新手入门，如果你是c++新手玩家，想掌握一点模板的基础，这篇博客会比较适合你。 1 模板函数1.1 普通函数模板在声">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-26T04:46:21.904Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="c++ Template（模板） 基础学习">
+<meta name="twitter:description" content="c++ Template（模板） 基础学习 前言模板是c++进阶的重要的一环，但同时又是难点之一。我在看大佬的代码时，经常会被大佬模板的各种花式用法秀的脑壳疼，因此好好学习了一模板的基础知识，写这篇博客为的是自己的总结学习以及以后复习可以看。这篇博客的例程相对简单容易看懂，比较适合新手入门，如果你是c++新手玩家，想掌握一点模板的基础，这篇博客会比较适合你。 1 模板函数1.1 普通函数模板在声">
+
+  
+
+  
+    <link rel="icon" href="/images/ico.jpg">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#c-Template（模板）-基础学习"><span class="toc-text"> c++ Template（模板） 基础学习 </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-模板函数"><span class="toc-text">1 模板函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-普通函数模板"><span class="toc-text">1.1 普通函数模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-成员函数模板"><span class="toc-text">1.2 成员函数模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-模板函数"><span class="toc-text">1.3 模板函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-类模板与模板类"><span class="toc-text">2 类模板与模板类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-类模板"><span class="toc-text">2.1 类模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-模板类"><span class="toc-text">2.2 模板类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-成员模板"><span class="toc-text">3 成员模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-模板的特化与偏特化"><span class="toc-text">4 模板的特化与偏特化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-模板参数"><span class="toc-text">5 模板参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-类型模板参数与非类型模板参数"><span class="toc-text">5.1 类型模板参数与非类型模板参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-模板模板参数"><span class="toc-text">5.2 模板模板参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-变长模板参数"><span class="toc-text">5.3 变长模板参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-2-变参类模板"><span class="toc-text">5.3.2 变参类模板</span></a></li></ol></li></ol></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-模板" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">c++ Template（模板） 基础学习</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.05.25</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>我爱不吃糖</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="c-Template（模板）-基础学习"><a href="#c-Template（模板）-基础学习" class="headerlink" title=" c++ Template（模板） 基础学习 "></a><center> c++ Template（模板） 基础学习 </center></h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>模板是c++进阶的重要的一环，但同时又是难点之一。我在看大佬的代码时，经常会被大佬模板的各种花式用法秀的脑壳疼，因此好好学习了一模板的基础知识，写这篇博客为的是自己的总结学习以及以后复习可以看。这篇博客的例程相对简单容易看懂，比较适合新手入门，如果你是c++新手玩家，想掌握一点模板的基础，这篇博客会比较适合你。</p>
+<h2 id="1-模板函数"><a href="#1-模板函数" class="headerlink" title="1 模板函数"></a>1 模板函数</h2><h3 id="1-1-普通函数模板"><a href="#1-1-普通函数模板" class="headerlink" title="1.1 普通函数模板"></a>1.1 普通函数模板</h3><p>在声明函数钱加上一个<code>template&lt;&gt;</code>的头，就是一个模板函数.模板既可以作为输入变量也可以为返回值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;</span><br><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">sum</span><span class="params">(T a, T b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</span><br><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">sum</span><span class="params">(T1 a, T2 b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> T3&gt;</span><br><span class="line"><span class="function">T3 <span class="title">sum</span><span class="params">(T1 a, T2 b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用时可以声明使用的模板类型，也可以不声明，让系统自动匹配。且声明的模板类型可以是全部的，也可以是部分。比如你可以在有两个输入模板的情况下，你可以值声明第一个的类型，让系统去自动匹配第二个的类型。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; sum(<span class="number">1</span>, <span class="number">2</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; sum&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;(<span class="number">1</span>, <span class="number">2</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; sum(<span class="number">1</span>, <span class="number">2.0</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; sum&lt;<span class="keyword">int</span>,<span class="keyword">double</span>&gt;(<span class="number">1</span>, <span class="number">2.0</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; sum&lt;ldouble&gt;(<span class="number">1.0</span>, <span class="number">2.0</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-成员函数模板"><a href="#1-2-成员函数模板" class="headerlink" title="1.2 成员函数模板"></a>1.2 成员函数模板</h3><p>成员函数模板与普通函数类似，只是函数为一个类的成员函数，定义方法相同：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Math</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span> :</span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;</span><br><span class="line">    <span class="function"><span class="keyword">auto</span> <span class="title">sum</span><span class="params">(T a, T b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</span><br><span class="line">    <span class="function"><span class="keyword">auto</span> <span class="title">sum</span><span class="params">(T1 a, T2 b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> T3&gt;</span><br><span class="line">    <span class="function">T3 <span class="title">sum</span><span class="params">(T1 a, T2 b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>成员函数模板使用也与普体函数模板类似</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Math obj;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; obj.sum(<span class="number">1</span>, <span class="number">2</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; obj.sum(<span class="number">1</span>, <span class="number">2.0</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; obj.sum&lt;<span class="keyword">long</span>&gt;(<span class="number">1</span>, <span class="number">2</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这里的<code>isEqual</code>函数为一个成员函数，同样可以使用模板。这里需要注意这里的模板函数不能为虚函数，模板编译的时候需要找到所有的调用，显然虚函数是找不到实例的，因此这是不可行的。</p>
+<h3 id="1-3-模板函数"><a href="#1-3-模板函数" class="headerlink" title="1.3 模板函数"></a>1.3 模板函数</h3><p>在使用1.1中的函数模板时</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a;</span><br><span class="line"><span class="keyword">double</span> b;</span><br><span class="line"><span class="keyword">auto</span> result = sum(a,b);</span><br></pre></td></tr></table></figure>
+
+<p>编译的时候会自动生成模板函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">double</span> b)</span></span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>模板函数祈使就是实例化的函数模板。</p>
+<h2 id="2-类模板与模板类"><a href="#2-类模板与模板类" class="headerlink" title="2 类模板与模板类"></a>2 类模板与模板类</h2><h3 id="2-1-类模板"><a href="#2-1-类模板" class="headerlink" title="2.1 类模板"></a>2.1 类模板</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Math</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span> :</span><br><span class="line">    <span class="function"><span class="keyword">auto</span> <span class="title">sum</span><span class="params">(T a, T b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>类模板声明对象时，需要指定其模板的类型，如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Math&lt;<span class="keyword">int</span>&gt; obj;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; obj.sum(<span class="number">1</span>, <span class="number">2</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<p>类模板可以被继承，产生派生类模板或派生非米板类：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Math2</span> :</span>Math&lt;T&gt; &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">sum2</span><span class="params">(T a, T b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Math&lt;T&gt;::sum(a, b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Math3</span> :</span>Math&lt;<span class="keyword">int</span>&gt; &#123;</span><br><span class="line"><span class="keyword">public</span> :</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">sum3</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Math::sum(a, b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-模板类"><a href="#2-2-模板类" class="headerlink" title="2.2 模板类"></a>2.2 模板类</h3><p>与模板函数相同，模板类可以理解成实例化后的类模板，是一个类。</p>
+<h2 id="3-成员模板"><a href="#3-成员模板" class="headerlink" title="3 成员模板"></a>3 成员模板</h2><p>成员模板即类中的成员为模板的模板，<code>1.2</code>中的成员函数就是一种成员模板，成员模板也可以出现在类模板中。类模板中的成员模板函数在实现的时候需要加两个模板头，类模板头和成员模板头：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Math</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T2&gt;</span><br><span class="line">    <span class="function"><span class="keyword">auto</span> <span class="title">sum</span><span class="params">(T1 a, T2 b)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T2&gt;</span><br><span class="line"><span class="keyword">auto</span> Math&lt;T1&gt;::sum(T1 a, T2 b)&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用方法如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Math&lt;<span class="keyword">int</span>&gt; obj;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; obj.sum&lt;<span class="keyword">int</span>&gt;(<span class="number">1</span>, <span class="number">2</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-模板的特化与偏特化"><a href="#4-模板的特化与偏特化" class="headerlink" title="4 模板的特化与偏特化"></a>4 模板的特化与偏特化</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1,<span class="keyword">typename</span> T2&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassA</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"这是模板"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span>&lt;&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassA</span>&lt;int,int&gt; &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"这是特化"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassA</span>&lt;T1,int&gt; &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"这是偏特化"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>使用方法：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ClassA&lt;<span class="keyword">double</span>, <span class="keyword">double</span>&gt; a;</span><br><span class="line">a.func();</span><br><span class="line">ClassA&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; b;</span><br><span class="line">b.func();</span><br><span class="line">ClassA&lt;<span class="keyword">double</span>, <span class="keyword">int</span>&gt; c;</span><br><span class="line">c.func();</span><br><span class="line">ClassA&lt;<span class="keyword">int</span>, <span class="keyword">double</span>&gt; d;</span><br><span class="line">d.func();</span><br></pre></td></tr></table></figure>
+
+<p>得到输出：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">这是模板</span><br><span class="line">这是特化</span><br><span class="line">这是偏特化</span><br><span class="line">这是模板</span><br></pre></td></tr></table></figure>
+
+<p>特化就是对模板的参数定义一些特殊的参数集，例子中的将模板参数定义为了<code>&lt;int,int&gt;</code>。类似于特化，偏特化就是将模板参数的一部分定义一个特殊的参数集，剩下的由编译器自动匹配。<br><strong>这里需要注意，类模板支持特化与偏特化，而函数模板只有特化不支持偏特化。</strong></p>
+<h2 id="5-模板参数"><a href="#5-模板参数" class="headerlink" title="5 模板参数"></a>5 模板参数</h2><h3 id="5-1-类型模板参数与非类型模板参数"><a href="#5-1-类型模板参数与非类型模板参数" class="headerlink" title="5.1 类型模板参数与非类型模板参数"></a>5.1 类型模板参数与非类型模板参数</h3><p>在<code>1</code>中所用的输入参数为一个<code>typename</code>的类型的使用方法即是一个类型模板参数，除此以外，还有一种常见的用法，叫做非类型模板参数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T,<span class="keyword">int</span> N = <span class="number">100</span>&gt;</span><br><span class="line">class myArry &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">int</span> length()&#123;<span class="keyword">return</span> N;&#125;</span><br><span class="line">	T <span class="built_in">array</span>[N];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这里的<code>myArray</code>是一个类模板，其中由两个模板参数，第一个是类型模板参数，第二个为非类型模板参数。我在这里设置了一个非类型模板参数的默认值为100。当我们需要一个1000长度的<code>double</code>类型的数组时，可以这样定义：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">myArry&lt;<span class="keyword">double</span>, <span class="number">1000</span>&gt; a;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length(); ++i) &#123;</span><br><span class="line">    a.<span class="built_in">array</span>[i] = i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-模板模板参数"><a href="#5-2-模板模板参数" class="headerlink" title="5.2 模板模板参数"></a>5.2 模板模板参数</h3><p>模板模板参数，顾名思义，模板参数为一个模板</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassA</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    T A;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1,<span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span>&gt; <span class="title">class</span> <span class="title">T2</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">ClassB</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>: </span><br><span class="line">    T2&lt;T1&gt; B;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用方法如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ClassB&lt;<span class="built_in">string</span>, ClassA&gt; obj;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="keyword">typeid</span>(obj.B).name() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="keyword">typeid</span>(ClassA&lt;<span class="built_in">string</span>&gt;).name() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="keyword">typeid</span>(obj.B.A).name() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="keyword">typeid</span>(<span class="built_in">string</span>).name() &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这里<code>ClassB</code>类的第二个模板参数是一个模板，在使用时，将类模板<code>ClassA</code>作为参数输入。使用<code>typeid</code>查看他们的来类型，可以得到这样的输出：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassA</span>&lt;class std::basic_string&lt;char,struct std::char_traits&lt;char&gt;,class std::allocator&lt;char&gt; &gt; &gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">ClassA</span>&lt;class std::basic_string&lt;char,struct std::char_traits&lt;char&gt;,class std::allocator&lt;char&gt; &gt; &gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">std</span>:</span>:basic_string&lt;<span class="keyword">char</span>,<span class="class"><span class="keyword">struct</span> <span class="title">std</span>:</span>:char_traits&lt;<span class="keyword">char</span>&gt;,<span class="class"><span class="keyword">class</span> <span class="title">std</span>:</span>:allocator&lt;<span class="keyword">char</span>&gt; &gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">std</span>:</span>:basic_string&lt;<span class="keyword">char</span>,<span class="class"><span class="keyword">struct</span> <span class="title">std</span>:</span>:char_traits&lt;<span class="keyword">char</span>&gt;,<span class="class"><span class="keyword">class</span> <span class="title">std</span>:</span>:allocator&lt;<span class="keyword">char</span>&gt; &gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到<code>ClassB</code>的成员<code>B</code>是一个<code>ClassA&lt;string&gt;</code>类型，而<code>A</code>是一个string<code>类型</code>。</p>
+<h3 id="5-3-变长模板参数"><a href="#5-3-变长模板参数" class="headerlink" title="5.3 变长模板参数"></a>5.3 变长模板参数</h3><p>变长参数模板即输入参数长度可为0到无限个，其输入参数为一个参数包，这个参数包里的参数不能直接使用，需要展开参数包才能得到，这也是模板的难点之一。<br>变参函数模板和变参类模板使用类似，但是由于函数模板不支持偏特化，因此解包的方式有所不同。</p>
+<p>####5.3.1 变参函数模板</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> ... T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(T ... args)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>...(args) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func(<span class="number">1</span>);      <span class="comment">//1</span></span><br><span class="line">func(<span class="number">1</span>,<span class="number">2</span>);    <span class="comment">//2</span></span><br><span class="line">func(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);<span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+
+<p>这里介绍两种变参函数模板的解包方法：<br> <strong>方法一 递归展开</strong><br> 用一个递归方式来将参数包展开：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> ... Args&gt;</span><br><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">sum</span><span class="params">(T first, Args ... args)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> first + sum(args...);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>) &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//6</span></span><br></pre></td></tr></table></figure>
+
+<p>这里需要一个<code>sum()</code>来结束递归，否则编译会报错，这是应为这个递归的调用顺序如下</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">sum(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">sum(<span class="number">1</span>)</span><br><span class="line">sum()</span><br></pre></td></tr></table></figure>
+
+<p>带模板的<code>sum</code>的输入参数至少需要一个（args可以为0个），所以需要一个不带参的<code>sum</code>重载来结束递归，否则编译将报错。<br><strong>方法二 直接展开</strong><br> 直接展开：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> ... Args&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(Args ... args)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> arg[] = &#123; (args)... &#125;;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="keyword">sizeof</span>...(args); ++i)&#123;</span><br><span class="line">        result += arg[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>) &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//6</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-2-变参类模板"><a href="#5-3-2-变参类模板" class="headerlink" title="5.3.2 变参类模板"></a>5.3.2 变参类模板</h4><p>同样的，变参类模板这里也介绍两种解包方法：<br><strong>方法一 偏特化递归展开</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> ... Args&gt;<span class="comment">//向前申明</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sum</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Frist,<span class="keyword">typename</span> ... Last&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sum</span>&lt;Frist, Last...&gt; &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">auto</span> <span class="title">sum</span><span class="params">(Frist first, Last ...last)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> first + Sum&lt;Last...&gt;::sum(last...);</span><br><span class="line">    &#125; </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Last&gt;<span class="comment">//偏特化</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sum</span>&lt;Last&gt; &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">auto</span> <span class="title">sum</span><span class="params">(Last last)</span> </span>&#123; <span class="keyword">return</span> last; &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt; Sum&lt;<span class="keyword">int</span>,<span class="keyword">int</span>,<span class="keyword">int</span>&gt;::sum(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)&lt;&lt; <span class="built_in">endl</span>;<span class="comment">//10</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>方法二 继承展开</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> ...T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassA</span>&#123;</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> First,<span class="keyword">typename</span> ...Last&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassA</span>&lt;First, Last...&gt;:</span> ClassA&lt;Last...&gt; &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ClassA() &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="keyword">typeid</span>(First).name() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span>&lt;&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassA</span>&lt;&gt;&#123;</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ClassA&lt;<span class="keyword">int</span>, <span class="keyword">float</span>, <span class="keyword">double</span>&gt; a;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span></span><br><span class="line"><span class="keyword">float</span></span><br><span class="line"><span class="keyword">int</span></span><br></pre></td></tr></table></figure>
+
+<p>构造函数由父类的开始执行，因此最先执行的是<code>ClassA&lt;double&gt;</code>的构造函数。</p>
+<p><em>博主也在学习阶段，文中可能由错或者叙述不详的地方，欢迎指正</em></p>
+
+    
+  </div>
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/mmqrcode1558784601537.png" alt>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/05/25/hello-world/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+    <div id="comment" class="vcomment"></div>
+    <script>
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+            return GUEST_INFO.indexOf(item) > -1
+        });
+        guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+        window.valine = new Valine({
+            el: '.vcomment',
+            notify: notify,
+            verify: verify,
+            appId: "",
+            appKey: "",
+            avatar:'mm',
+            placeholder: "Just go go",
+            guest_info:guest_info,
+            pageSize:'10'
+        });
+    </script>
+  
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '277317290454635afa73',
+  clientSecret: '78223c859304da5e8d71bfce136d436c6ff95c37',
+  repo: 'blog-comment',
+  owner: '我爱不吃糖',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: location.pathname,
+  admin: ['我爱不吃糖'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
