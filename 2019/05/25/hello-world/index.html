@@ -282,17 +282,6 @@
     
 
     
-  <section id="changyan-comments">
-    <div id="SOHUCS" sid="Hello World"></div>
-    <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js"></script>
-    <script type="text/javascript">
-      window.changyan.api.config({
-        appid: '',
-        conf: ''
-      });
-    </script>
-  </section>
-
     
 
     
@@ -336,12 +325,12 @@ const gitalk = new Gitalk({
   clientID: 'e577162cfad30ded7cf1',
   clientSecret: 'eab3e8850a398672cbb99d4e57f02c1c5e094360',
   repo: 'hexo_talk',
-  owner: '我爱不吃糖',
+  owner: 'Wabct',
   // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
   // 50个字符串则会报错.
   // id: location.pathname.split('/').pop().substring(0, 49),
   id: location.pathname,
-  admin: ['我爱不吃糖'],
+  admin: ['Wabct'],
   // facebook-like distraction free mode
   distractionFreeMode: false
 })
@@ -385,5 +374,20 @@ gitalk.render('gitalk-container')
   }
 </script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
